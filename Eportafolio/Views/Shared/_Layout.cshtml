@@ -22,6 +22,14 @@
                     <li>@Html.ActionLink("Inicio", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Acerca de", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Contacto", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+
+
+                    @if(User.Identity.IsAuthenticated)
+                    { 
+                    @* Opciones para menu administrativo*@
+                    <li>@Html.ActionLink("Esta es una opcion para Admin", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    }
+
                 </ul>
                  @Html.Partial("_LoginPartial")
             </div>
