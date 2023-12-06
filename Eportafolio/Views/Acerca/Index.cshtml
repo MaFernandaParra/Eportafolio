@@ -4,12 +4,25 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2 style="color:white; font-size:50px;">Acerca</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+
+<div class="text-center">
+    <img src="~/Content/Imagenes/perfil.jpg" class="rounded" style="width: 250px; height: 350px;" />
+</div>
+
+@if (User.Identity.IsAuthenticated)
+{
+    @* Opciones para menu administrativo*@
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+}
+
+
+
+
+<table class="table" style="color:white; font-size:25px;">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Acerca1)
@@ -17,17 +30,25 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Acerca1)
+            </td>
+
+            @if (User.Identity.IsAuthenticated)
+            {
+                @* Opciones para menu administrativo*@
         <td>
-            @Html.DisplayFor(modelItem => item.Acerca1)
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
         </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+            }
+
+            
+        </tr>
+    }
 
 </table>
